@@ -561,9 +561,9 @@
     </section>
     <!-- Blog Section End -->
 
-    <div id="result">
+    <ul id="result">
 
-    </div>
+    </ul>
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -658,13 +658,18 @@
         re.appendChild(a);
         
         const url = "https://websi.dstar.name.vn/webservice/rest/server.php?wstoken=5210c0f618a5b8b5210373b5c41e4506&wsfunction=core_course_get_courses&moodlewsrestformat=json"
-       console.log(fetch(url).Response)
+     //console.log(fetch(url).Response)
         fetch(url) 
       .then(res => res.json())
       .then(data => {
-        //this is the data that paste out the document
-        document.getElementById('result').innerHTML =
-          `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        console.log(data); // In ra mảng
+    data.forEach(course => {
+      console.log(course.fullname); // Hiển thị tên khóa học
+    });
+
+    // Ví dụ: đưa toàn bộ tên khoá học vào HTML
+    const container = document.getElementById("result");
+    container.innerHTML = data.map(c => `<li>${c.fullname}</li>`).join('');
       })
       .catch(err => {
         document.getElementById('result').innerText = 'Lỗi khi gọi API: ' + err;
