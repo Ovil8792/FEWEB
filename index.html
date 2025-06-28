@@ -561,6 +561,10 @@
     </section>
     <!-- Blog Section End -->
 
+    <div id="result">
+        
+    </div>
+
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
@@ -648,6 +652,18 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        const url = "https://websi.dstar.name.vn/webservice/rest/server.php?wstoken=5210c0f618a5b8b5210373b5c41e4506&wsfunction=core_course_get_courses&moodlewsrestformat=json"
+        fetch(url) 
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('result').innerHTML =
+          `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      })
+      .catch(err => {
+        document.getElementById('result').innerText = 'Lỗi khi gọi API: ' + err;
+      });
+    </script>
 </body>
 
 </html>
