@@ -564,6 +564,12 @@
     <ul id="result">
 
     </ul>
+    <ul id="result2">
+
+    </ul>
+    <ul id="result3">
+
+    </ul>
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -662,14 +668,18 @@
         fetch(url) 
       .then(res => res.json())
       .then(data => {
-        console.log(data); // In ra mảng
-    data.forEach(course => {
-      console.log(course.fullname); // Hiển thị tên khóa học
-    });
+    //     console.log(data); // In ra mảng
+    // data.forEach(course => {
+    //   console.log(course.fullname); // Hiển thị tên khóa học
+    // });
 
     // Ví dụ: đưa toàn bộ tên khoá học vào HTML
     const container = document.getElementById("result");
-    container.innerHTML = data.map(c => `<li>${c.fullname}</li>`).join('');
+    const container2 = document.getElementById("result2");
+    const container3 = document.getElementById("result3");
+    container.innerHTML = data.map(c => `<li>${c.id}</li>`).join('');
+    container2.innerHTML = data.map(c => `<li>${c.shortname}</li>`).join('');
+    container3.innerHTML = data.map(c => `<li>${c.fullname}</li>`).join('');
       })
       .catch(err => {
         document.getElementById('result').innerText = 'Lỗi khi gọi API: ' + err;
